@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService, User } from 'src/app/service/authentication.service';
 
 @Component({
@@ -18,7 +19,9 @@ export class SignupComponent implements OnInit {
     private auth:AuthenticationService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private modalService: NgbModal,
   ) {
+    this.modalService.dismissAll();
     this.auth.clearUserDetails();
     this.setUserDetails();
   }

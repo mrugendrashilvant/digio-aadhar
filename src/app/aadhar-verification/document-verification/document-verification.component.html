@@ -1,1 +1,75 @@
-<p>document-verification works!</p>
+<div class="container hv100 position-relative">
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Register Aadhar</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-2 col-md-3">
+                    <img class="img img-fluid w-100" src="assets/aadhar.png" alt="aadhar">
+                </div>
+                <div class="col-10 col-md-9 px-3">
+                    <form class="mb-4" [formGroup]="aadharForm" (ngSubmit)="aadharOnSubmit()">
+                        <div class="d-flex">
+                            <div class="me-2">
+                                <div class="form-group mb-1 w-100">
+                                    <input type="text" formControlName="aadharNumber" class="form-control" [ngClass]="{ 'is-invalid': aadharSubmitted && aadharFormControl?.aadharNumber?.errors }" />
+                                    <div *ngIf="aadharSubmitted && aadharFormControl?.aadharNumber?.errors" class="invalid-feedback">
+                                        <div *ngIf="aadharFormControl.aadharNumber.errors.required">Aadhar Number is required</div>
+                                        <div *ngIf="aadharFormControl?.aadharNumber?.errors?.minLength">Aadhar Number must be a valid</div>
+                                        <div *ngIf="aadharFormControl?.aadharNumber?.errors?.maxLength || aadharFormControl?.aadharNumber?.errors?.pattern">Aadhar Number must be a valid</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input formControlName="tandc" [ngClass]="{'is-invalid': aadharSubmitted && aadharFormControl?.tandc?.errors}" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            I agree to eSign this KYC document to get started
+                                        </label>
+                                      </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button class="btn btn-primary text-light">Verify</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <form *ngIf="otpForm" [formGroup]="otpForm" (ngSubmit)="otpOnSubmit()">
+                        <div class="d-flex px-4">
+                            <div class="form-group me-2">
+                                <input type="text" formControlName="otp" class="form-control" [ngClass]="{ 'is-invalid': otpSubmitted && otpFormControl?.otp?.errors }" />
+                                <div *ngIf="otpSubmitted && otpFormControl?.otp?.errors" class="invalid-feedback">
+                                    <div *ngIf="otpFormControl.otp.errors.required">OTP Number is required</div>
+                                    <div *ngIf="otpFormControl?.otp?.errors?.minLength">OTP is incorrect</div>
+                                    <div *ngIf="otpFormControl?.otp?.errors?.maxLength || otpFormControl?.otp?.errors?.invalid">OTP is incorrect</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button [disabled]="disableOtp" class="btn btn-primary text-light">SUBMIT</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+    <div *ngIf="loader?.loading" class="loading position-absolute top-0 start-0 w-100">
+        <ng-container *ngIf="loader?.signing; else signed">
+            <h4 *ngIf="loader?.signing">Signing...</h4>
+            <p class="text-primary">Mutual Non-Disclosure Agreement</p>
+        </ng-container>
+    </div>
+    <ng-template #signed>
+        <div class="w-100 bg-done text-center p-4">
+            <p class="fs-3 mb-0">Aadhar verified successfully</p>
+        </div>
+    </ng-template>
+    <div class="content d-flex flex-column justify-content-center align-items-center h-100">
+        <img class="img img-fluid w-75" src="assets/document.png" alt="document">
+        <button (click)="openModal()" *ngIf="!userDetails?.isDocumentSigned" class="btn primary-custom text-light">Request OTP to Sign</button>
+    </div>
+</div>

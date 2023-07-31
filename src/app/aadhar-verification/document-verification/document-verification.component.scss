@@ -1,0 +1,19 @@
+.hv100 {
+    height: 100svh;
+}
+.content {
+    max-height: 100vh;
+
+    img {
+        max-width: 576px;
+        width: auto;
+    }
+    .primary-custom {
+        background-color: #0261b0;
+    }
+}
+
+.bg-done {
+    background-color: lightgreen;
+    color: darkgreen;
+}

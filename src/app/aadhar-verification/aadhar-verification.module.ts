@@ -6,6 +6,7 @@ import { AadharVerificationComponent } from './aadhar-verification.component';
 import { SignupComponent } from './signup/signup.component';
 import { DocumentVerificationComponent } from './document-verification/document-verification.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AadharVerificationRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModalModule
   ]
 })
 export class AadharVerificationModule { }

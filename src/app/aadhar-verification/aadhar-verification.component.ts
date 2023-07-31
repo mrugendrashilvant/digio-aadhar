@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-aadhar-verification',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AadharVerificationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private auth: AuthenticationService
+  ) { }
 
   ngOnInit(): void {
   }

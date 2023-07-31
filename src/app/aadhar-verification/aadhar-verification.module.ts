@@ -3,11 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { AadharVerificationRoutingModule } from './aadhar-verification-routing.module';
 import { AadharVerificationComponent } from './aadhar-verification.component';
+import { SignupComponent } from './signup/signup.component';
+import { DocumentVerificationComponent } from './document-verification/document-verification.component';
 
 
 @NgModule({
   declarations: [
-    AadharVerificationComponent
+    AadharVerificationComponent,
+    SignupComponent,
+    DocumentVerificationComponent
   ],
   imports: [
     CommonModule,

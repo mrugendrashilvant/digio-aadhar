@@ -1,3 +1,55 @@
-<div class="container">
-    <p>signup works!</p>
+<div class="container wrapper d-flex justify-content-center align-items-center">
+    <div class="card rounded-0 w-100">
+        <div class="card-header position-relative text-light rounded-0 border-0 d-flex justify-content-between align-items-center">
+            <div>
+                <p class="fs-3 mb-0">Sign document using</p>
+                <p *ngIf="userDetails && userDetails?.email" class="mb-0">{{userDetails?.email}}</p>
+            </div>
+            <img src="assets/logo-small.jpg" alt="digio" class="img img-fluid position-absolute end-0 top-0 logo">
+        </div>
+        <div class="card-body border-0">
+            <div class="p-3">
+                <div class="text-center mb-3">
+                    <p>Login Using Google</p>
+                    <button class="btn btn-danger" disabled>Google</button>
+                </div>
+                <div class="d-flex justify-content-around align-items-center mb-3">
+                    <div class="hr-line"></div>
+                    <p class="mb-0 mx-2 fs-3">OR</p>
+                    <div class="hr-line"></div>
+                </div>
+                <div>
+                    <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group mb-3">
+                            <label class="mb-1">Proceed with your email address</label>
+                            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && form?.email?.errors }" />
+                            <div *ngIf="submitted && form?.email?.errors" class="invalid-feedback">
+                                <div *ngIf="form.email.errors.required">Email is required</div>
+                                <div *ngIf="form?.email?.errors?.email">Email must be a valid email address</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary-custom text-light w-100">CONTINUE</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer border-0 bg-transparent">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <img src="assets/logo-small.jpg" alt="digio" class="img img-fluid smaller-logo me-1">
+                    <div>
+                        <p class="text-muted smaller mb-0">Powered by</p>
+                        <a href="https://www.digio.in/" class="text-primary smaller text-decoration-none mt-n1">www.digio.in</a>
+                    </div>
+                </div>
+                <div>
+                    <p class="mb-0 text-muted"><span class="fw-bold fs-3">1</span>/3 steps</p>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
 </div>

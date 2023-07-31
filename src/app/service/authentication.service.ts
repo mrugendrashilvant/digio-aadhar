@@ -16,13 +16,28 @@ export class AuthenticationService {
     isLoggedIn: false,
   }
 
-  constructor() { }
+  constructor() {
+    let defaultUserDetails = localStorage.getItem("userDetails");
+    if(defaultUserDetails){
+      this.user = {...JSON.parse(defaultUserDetails)};
+    }
+  }
+
+  getUserDetails(){
+    return this.user;
+  }
+
+  updateUserDetails(user:User){
+    this.user = Object.assign(this.user, user);
+    localStorage.setItem("userDetails", JSON.stringify(this.user));
+  }
 
   isUserLoggedIn():boolean{
     return this.user.isLoggedIn;
   }
 
   clearUserDetails(){
+    localStorage.removeItem("userDetails");
     this.user = {isLoggedIn: false};
   }
 
